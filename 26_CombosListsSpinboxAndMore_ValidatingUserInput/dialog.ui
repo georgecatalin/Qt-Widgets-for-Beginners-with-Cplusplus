@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>347</width>
-    <height>226</height>
+    <width>336</width>
+    <height>217</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -26,7 +26,7 @@
      <item row="0" column="1">
       <widget class="QLineEdit" name="txtPhone">
        <property name="inputMask">
-        <string>000-000-000-000</string>
+        <string>000-000-0000</string>
        </property>
       </widget>
      </item>
@@ -54,7 +54,7 @@
      <item row="2" column="1">
       <widget class="QLineEdit" name="txtDate">
        <property name="inputMask">
-        <string>00/00/0000;_</string>
+        <string>00/00/0000;-</string>
        </property>
       </widget>
      </item>
@@ -66,7 +66,11 @@
       </widget>
      </item>
      <item row="3" column="1">
-      <widget class="QLineEdit" name="txtEmail"/>
+      <widget class="QLineEdit" name="txtEmail">
+       <property name="inputMask">
+        <string/>
+       </property>
+      </widget>
      </item>
     </layout>
    </item>

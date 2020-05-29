@@ -22,7 +22,8 @@ private slots:
     void on_buttonBox_accepted();
 
     void on_buttonBox_rejected();
-    void check();
+
+    void checkInput();
 
 private:
     Ui::Dialog *ui;
