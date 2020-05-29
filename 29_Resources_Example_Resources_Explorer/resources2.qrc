@@ -1,0 +1,13 @@
+<RCC>
+    <qresource prefix="/new/special">
+        <file>Resources/files/iconfinder_logo_brand_brands_logos_chrome_2993698.png</file>
+        <file>Resources/files/iconfinder_logo_brand_brands_logos_firefox_2993692.png</file>
+        <file>Resources/files/iconfinder_logo_brand_brands_logos_safari_2993674.png</file>
+    </qresource>
+    <qresource prefix="/res">
+        <file>Resources/files/iconfinder_logo_brand_brands_logos_edge_2993695.png</file>
+    </qresource>
+    <qresource prefix="/test">
+        <file>Resources/dialog/iconfinder_12_Forbidden_2722398.png</file>
+    </qresource>
+</RCC>

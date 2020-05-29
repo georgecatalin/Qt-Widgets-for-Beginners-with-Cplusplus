@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/res">
+        <file>Resources/dialog/iconfinder_12_Forbidden_2722398.png</file>
+        <file>Resources/dialog/iconfinder_17_Forbidden_2722403.png</file>
+    </qresource>
+    <qresource prefix="/test">
+        <file>29_Resources_Example_Resources_Explorer.pro.user</file>
+    </qresource>
+</RCC>
