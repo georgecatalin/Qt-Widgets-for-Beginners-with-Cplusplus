@@ -1,0 +1,13 @@
+<RCC>
+    <qresource prefix="/files">
+        <file>Image Files/files/iconfinder_logo_brand_brands_logos_chrome_2993698.png</file>
+        <file>Image Files/files/iconfinder_logo_brand_brands_logos_edge_2993695.png</file>
+        <file>Image Files/files/iconfinder_logo_brand_brands_logos_firefox_2993692.png</file>
+        <file>Image Files/files/iconfinder_logo_brand_brands_logos_opera_2993679.png</file>
+        <file>Image Files/files/iconfinder_logo_brand_brands_logos_safari_2993674.png</file>
+    </qresource>
+    <qresource prefix="/else">
+        <file>Image Files/dialog/iconfinder_12_Forbidden_2722398.png</file>
+        <file>Image Files/dialog/iconfinder_17_Forbidden_2722403.png</file>
+    </qresource>
+</RCC>
