@@ -8,7 +8,7 @@ https://www.udemy.com/course/qt-widgets-beginners/
 * Section 2: Layouts
 * Section 3: Buttons, and checkboxes
 * Section 4: Combos, lists, spinbox, and more
-* Section 5: Resources
+* Section 5: Resources (** see Qt Core Advanced for "30. Resources in libraries")
 * Section 6: Multiple Dialogs
 * Section 7: QMainWindow
 * Section 8: Containers
