@@ -1,0 +1,16 @@
+<RCC>
+    <qresource prefix="/files">
+        <file>images/accept.png</file>
+        <file>images/add.png</file>
+        <file>images/anchor.png</file>
+        <file>images/application_add.png</file>
+        <file>images/application_cascade.png</file>
+        <file>images/application_delete.png</file>
+        <file>images/application_double.png</file>
+        <file>images/application_edit.png</file>
+        <file>images/application_error.png</file>
+        <file>images/application_form_add.png</file>
+        <file>images/application_form_delete.png</file>
+        <file>images/application_form_edit.png</file>
+    </qresource>
+</RCC>
