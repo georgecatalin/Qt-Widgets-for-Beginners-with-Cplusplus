@@ -7,25 +7,23 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
+    connect(ui->actionNew, &QAction::triggered,this, &MainWindow::newFile);
+    connect(ui->actionOpen, &QAction::triggered,this, &MainWindow::openFile);
+    connect(ui->actionSave, &QAction::triggered,this, &MainWindow::saveFile);
+    connect(ui->actionSave_As, &QAction::triggered,this, &MainWindow::saveFileAs);
+    connect(ui->actionExit, &QAction::triggered,this, &MainWindow::close);
+    connect(ui->actionCopy, &QAction::triggered,ui->plainTextEdit, &QPlainTextEdit::copy);
+    connect(ui->actionCut, &QAction::triggered,ui->plainTextEdit, &QPlainTextEdit::cut);
+    connect(ui->actionPaste, &QAction::triggered,ui->plainTextEdit, &QPlainTextEdit::paste);
+    connect(ui->actionSelect_All, &QAction::triggered,ui->plainTextEdit, &QPlainTextEdit::selectAll);
+    connect(ui->actionSelect_None, &QAction::triggered,this, &MainWindow::selectNone);
+
     this->setCentralWidget(ui->plainTextEdit);
-
-    /* *** connect the signals to the slots in the constructor of the window class *** */
-    connect(ui->actionNew,&QAction::triggered,this,&MainWindow::newFile); //note about using carefully the MainWindow class in '&MainWindow::newFile'
-    connect(ui->actionOpen,&QAction::triggered,this,&MainWindow::openFile);
-    connect(ui->actionSave,&QAction::triggered,this,&MainWindow::saveFile);
-    connect(ui->actionSave_As,&QAction::triggered,this,&MainWindow::saveFileAs);
-    connect(ui->actionExit,&QAction::triggered,this,&MainWindow::close);
-
-    connect(ui->actionCopy,&QAction::triggered,ui->plainTextEdit,&QPlainTextEdit::copy);
-    connect(ui->actionCut,&QAction::triggered,ui->plainTextEdit,&QPlainTextEdit::cut);
-    connect(ui->actionPaste,&QAction::triggered,ui->plainTextEdit,&QPlainTextEdit::paste);
-    connect(ui->actionSelect_All,&QAction::triggered,ui->plainTextEdit,&QPlainTextEdit::selectAll);
-
-    /* *** there is no selectNone in the class &QPlainTextEdit, hence we add the one which is coded in the main window << 'this,&MainWindow::selectNone' *** */
-    connect(ui->actionSelect_None,&QAction::triggered,this,&MainWindow::selectNone);
+    setupStatusbar();
 
     newFile();
-    bool m_saved=true;
+    m_saved = true;
+
 }
 
 MainWindow::~MainWindow()
@@ -37,33 +35,33 @@ void MainWindow::newFile()
 {
     ui->plainTextEdit->clear();
     m_filename.clear();
-    m_saved=false;
-
-    ui->statusbar->showMessage("New File");
+    m_saved = false;
+   // ui->statusbar->showMessage("New File");
+    updateStatus("New File");
 }
 
 void MainWindow::openFile()
 {
-    QString path=QFileDialog::getOpenFileName(this,"Open File",QString()," Text Files (*.txt);; All files (*.*)");
-    if(path.isEmpty()) return;
+    QString temp = QFileDialog::getOpenFileName(this,"Open File",QString(),"Text Files (*txt);;All Files (*,*)");
 
-    m_filename=path;
-    QFile qFile(m_filename);
+    if(temp.isEmpty()) return;
 
-    if(!qFile.open(QIODevice::ReadOnly))
+    m_filename = temp;
+    QFile file(m_filename);
+    if(!file.open(QIODevice::ReadOnly))
     {
         newFile();
-        QMessageBox::critical(this,"Error",qFile.errorString());
+        QMessageBox::critical(this,"Error", file.errorString());
         return;
     }
 
-    QTextStream stream(&qFile);
+    QTextStream stream(&file);
     ui->plainTextEdit->setPlainText(stream.readAll());
+    file.close();
 
-    m_saved=true;
-    qFile.close();
-
-    ui->statusbar->showMessage(m_filename);
+    m_saved = true;
+    //ui->statusbar->showMessage(m_filename);
+    updateStatus(m_filename);
 }
 
 void MainWindow::saveFile()
@@ -74,72 +72,47 @@ void MainWindow::saveFile()
         return;
     }
 
-    QFile qFile(m_filename);
-
-    if(!qFile.open(QIODevice::WriteOnly))
+    QFile file(m_filename);
+    if(!file.open(QIODevice::WriteOnly))
     {
-        QMessageBox::critical(this,"Error",qFile.errorString());
+        QMessageBox::critical(this,"Error", file.errorString());
         return;
     }
 
-    QTextStream stream(&qFile);
-    stream<<ui->plainTextEdit->toPlainText();
+    QTextStream stream(&file);
+    stream << ui->plainTextEdit->toPlainText();
+    file.close();
 
-    qFile.close();
-    m_saved=true;
-
-    ui->statusbar->showMessage("Saved..."+m_filename);
+    m_saved = true;
+    //ui->statusbar->showMessage(m_filename);
+    updateStatus(m_filename);
 }
 
 void MainWindow::saveFileAs()
 {
-    QString path=QFileDialog::getSaveFileName(this,"Save File",QString(),"Text Files (*.txt);; All files (*.*)");
-
-    if(path.isEmpty()) return; //it means nothing has been selected
-
-    m_filename=path;
+    QString temp = QFileDialog::getSaveFileName(this,"Save File",QString(),"Text Files (*txt);;All Files (*,*)");
+    if(temp.isEmpty()) return;
+    m_filename = temp;
     saveFile();
 }
 
 void MainWindow::selectNone()
 {
-    /* *** QTextCursor contains information about both the cursor's position *** */
-    QTextCursor qTextCursor=ui->plainTextEdit->textCursor();
-
-    /* *** int QTextCursor::position() const
-     * Returns the absolute position of the cursor within the document. The cursor is positioned between characters.
-     * *** */
-    int position=qTextCursor.position();
-
-    /* *** void QTextCursor::clearSelection()
-     * Clears the current selection by setting the anchor to the cursor position.
-     * ***  */
-    qTextCursor.clearSelection();
-
-    /* ***
-     * enum QTextCursor::MoveMode
-     * QTextCursor::MoveAnchor = Moves the anchor to the same position as the cursor itself.
-     * QTextCursor::KeepAnchor = Keeps the anchor where it is.
-    *** */
-
-    qTextCursor.setPosition(position,QTextCursor::MoveMode::KeepAnchor);
-    ui->plainTextEdit->setTextCursor(qTextCursor);
+    QTextCursor cursor = ui->plainTextEdit->textCursor();
+    int pos = cursor.position();
+    cursor.clearSelection();
+    cursor.setPosition(pos,QTextCursor::MoveMode::KeepAnchor);
+    ui->plainTextEdit->setTextCursor(cursor);
 }
-
-void MainWindow::close()
-{
-
-}
-
 
 void MainWindow::on_actionToolbar_top_triggered()
 {
-   addToolBar(Qt::ToolBarArea::TopToolBarArea,ui->toolBar);
+    addToolBar(Qt::ToolBarArea::TopToolBarArea,ui->toolBar);
 }
 
 void MainWindow::on_actionToolbar_bottom_triggered()
 {
-     addToolBar(Qt::ToolBarArea::BottomToolBarArea,ui->toolBar);
+    addToolBar(Qt::ToolBarArea::BottomToolBarArea,ui->toolBar);
 }
 
 void MainWindow::on_actionToolbar_left_triggered()
@@ -152,7 +125,6 @@ void MainWindow::on_actionToolbar_right_triggered()
     addToolBar(Qt::ToolBarArea::RightToolBarArea,ui->toolBar);
 }
 
-
 void MainWindow::on_actionToolbar_floatable_toggled(bool arg1)
 {
     ui->toolBar->setFloatable(arg1);
@@ -161,4 +133,58 @@ void MainWindow::on_actionToolbar_floatable_toggled(bool arg1)
 void MainWindow::on_actionToolbar_movable_toggled(bool arg1)
 {
     ui->toolBar->setMovable(arg1);
+}
+
+void MainWindow::setupStatusbar()
+{
+    QLabel *lblIcon = new QLabel(this);
+    lblIcon->setPixmap(QPixmap(":/files/images/new.png"));
+    ui->statusbar->addWidget(lblIcon);
+
+    QLabel *lblStatus = new QLabel(this);
+    lblStatus->setText("Not Saved:");
+    ui->statusbar->addWidget(lblStatus);
+
+    QLabel *lblFile = new QLabel(this);
+    lblFile->setText("New");
+    ui->statusbar->addWidget(lblFile);
+}
+
+void MainWindow::updateStatus(QString message)
+{
+    foreach(QObject* obj, ui->statusbar->children())
+    {
+        qDebug() << obj;
+    }
+
+    QLabel *lblIcon = qobject_cast<QLabel*>(ui->statusbar->children().at(1));
+    QLabel *lblStaus = qobject_cast<QLabel*>(ui->statusbar->children().at(2));
+    QLabel *lblFile = qobject_cast<QLabel*>(ui->statusbar->children().at(4));
+
+    if(m_saved)
+    {
+        lblIcon->setPixmap(QPixmap(":/files/images/save.png"));
+        lblStaus->setText("Saved:");
+    }
+    else
+    {
+        lblIcon->setPixmap(QPixmap(":/files/images/new.png"));
+        lblStaus->setText("Not Saved:");
+    }
+
+    lblFile->setText(m_filename);
+}
+
+
+void MainWindow::on_plainTextEdit_textChanged()
+{
+    m_saved = false;
+    if(m_filename.isEmpty())
+    {
+        updateStatus("New File");
+    }
+    else
+    {
+        updateStatus(m_filename);
+    }
 }

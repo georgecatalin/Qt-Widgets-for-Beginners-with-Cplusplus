@@ -6,6 +6,9 @@
 #include <QFile>
 #include <QFileDialog>
 #include <QTextStream>
+#include <QLabel>
+#include <QStatusBar>
+#include <QDebug>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -19,19 +22,12 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-private:
-    Ui::MainWindow *ui;
-
-    QString m_filename;
-    bool m_saved;
-
 private slots:
     void newFile();
     void openFile();
     void saveFile();
     void saveFileAs();
     void selectNone();
-    void close();
 
     void on_actionToolbar_top_triggered();
     void on_actionToolbar_bottom_triggered();
@@ -39,5 +35,18 @@ private slots:
     void on_actionToolbar_right_triggered();
     void on_actionToolbar_floatable_toggled(bool arg1);
     void on_actionToolbar_movable_toggled(bool arg1);
+
+
+    void on_plainTextEdit_textChanged();
+
+private:
+    Ui::MainWindow *ui;
+
+    QString m_filename;
+    bool m_saved;
+
+    void setupStatusbar();
+    void updateStatus(QString message);
+
 };
 #endif // MAINWINDOW_H

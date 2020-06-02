@@ -1,28 +1,13 @@
 <RCC>
-    <qresource prefix="/files/browsersIcons">
-        <file>Image Files/Browsers/iconfinder_logo_brand_brands_logos_chrome_2993698.png</file>
-        <file>Image Files/Browsers/iconfinder_logo_brand_brands_logos_edge_2993695.png</file>
-        <file>Image Files/Browsers/iconfinder_logo_brand_brands_logos_firefox_2993692.png</file>
-        <file>Image Files/Browsers/iconfinder_logo_brand_brands_logos_opera_2993679.png</file>
-        <file>Image Files/Browsers/iconfinder_logo_brand_brands_logos_safari_2993674.png</file>
-    </qresource>
-    <qresource prefix="/files/SimpleUI">
-        <file>Image Files/Simple_UI/iconfinder_Cancel_1493282.png</file>
-        <file>Image Files/Simple_UI/iconfinder_Close_1493281.png</file>
-        <file>Image Files/Simple_UI/iconfinder_Copy_1493280.png</file>
-        <file>Image Files/Simple_UI/iconfinder_Cut_1493291.png</file>
-        <file>Image Files/Simple_UI/iconfinder_Delete_1493279.png</file>
-        <file>Image Files/Simple_UI/iconfinder_Help_1493288.png</file>
-        <file>Image Files/Simple_UI/iconfinder_New_1493292.png</file>
-        <file>Image Files/Simple_UI/iconfinder_Open_1493293.png</file>
-        <file>Image Files/Simple_UI/iconfinder_Options_1493287.png</file>
-        <file>Image Files/Simple_UI/iconfinder_Paste_1493290.png</file>
-        <file>Image Files/Simple_UI/iconfinder_Print_1493286.png</file>
-        <file>Image Files/Simple_UI/iconfinder_Properties_1493285.png</file>
-        <file>Image Files/Simple_UI/iconfinder_Redo_1493284.png</file>
-        <file>Image Files/Simple_UI/iconfinder_Save_1493294.png</file>
-        <file>Image Files/Simple_UI/iconfinder_Settings_1493289.png</file>
-        <file>Image Files/Simple_UI/iconfinder_Undo_1493283.png</file>
-        <file>Image Files/Simple_UI/Save-as_70651.png</file>
+    <qresource prefix="/files">
+        <file>images/copy.png</file>
+        <file>images/cut.png</file>
+        <file>images/new.png</file>
+        <file>images/open.png</file>
+        <file>images/paste.png</file>
+        <file>images/save.png</file>
+        <file>images/saveas.png</file>
+        <file>images/selectall.png</file>
+        <file>images/selectnone.png</file>
     </qresource>
 </RCC>
