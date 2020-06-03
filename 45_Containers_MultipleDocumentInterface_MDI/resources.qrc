@@ -1,0 +1,14 @@
+<RCC>
+    <qresource prefix="/files">
+        <file>images/copy.png</file>
+        <file>images/cut.png</file>
+        <file>images/new.png</file>
+        <file>images/open.png</file>
+        <file>images/paste.png</file>
+        <file>images/save.png</file>
+        <file>images/saveas.png</file>
+        <file>images/tile_cascade.png</file>
+        <file>images/tile_horizontal.png</file>
+        <file>images/tile_vertical.png</file>
+    </qresource>
+</RCC>
