@@ -58,6 +58,9 @@
     <addaction name="actionFind"/>
     <addaction name="actionReplace"/>
     <addaction name="separator"/>
+    <addaction name="actionUndo"/>
+    <addaction name="actionRedo"/>
+    <addaction name="separator"/>
     <addaction name="actionSelect_All"/>
    </widget>
    <widget class="QMenu" name="menuView">
@@ -321,6 +324,24 @@
    </property>
    <property name="text">
     <string>About</string>
+   </property>
+  </action>
+  <action name="actionUndo">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/files/images/arrow_undo.png</normaloff>:/files/images/arrow_undo.png</iconset>
+   </property>
+   <property name="text">
+    <string>Undo</string>
+   </property>
+  </action>
+  <action name="actionRedo">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/files/images/arrow_redo.png</normaloff>:/files/images/arrow_redo.png</iconset>
+   </property>
+   <property name="text">
+    <string>Redo</string>
    </property>
   </action>
  </widget>

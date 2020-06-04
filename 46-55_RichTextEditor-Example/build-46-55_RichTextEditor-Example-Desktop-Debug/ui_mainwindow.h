@@ -46,6 +46,8 @@ public:
     QAction *actionFont;
     QAction *actionHelp;
     QAction *actionAbout;
+    QAction *actionUndo;
+    QAction *actionRedo;
     QWidget *centralwidget;
     QTextEdit *textEdit;
     QMenuBar *menubar;
@@ -168,6 +170,16 @@ public:
         QIcon icon20;
         icon20.addFile(QString::fromUtf8(":/files/images/about.png"), QSize(), QIcon::Normal, QIcon::Off);
         actionAbout->setIcon(icon20);
+        actionUndo = new QAction(MainWindow);
+        actionUndo->setObjectName(QString::fromUtf8("actionUndo"));
+        QIcon icon21;
+        icon21.addFile(QString::fromUtf8(":/files/images/arrow_undo.png"), QSize(), QIcon::Normal, QIcon::Off);
+        actionUndo->setIcon(icon21);
+        actionRedo = new QAction(MainWindow);
+        actionRedo->setObjectName(QString::fromUtf8("actionRedo"));
+        QIcon icon22;
+        icon22.addFile(QString::fromUtf8(":/files/images/arrow_redo.png"), QSize(), QIcon::Normal, QIcon::Off);
+        actionRedo->setIcon(icon22);
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         textEdit = new QTextEdit(centralwidget);
@@ -217,6 +229,9 @@ public:
         menuEdit->addSeparator();
         menuEdit->addAction(actionFind);
         menuEdit->addAction(actionReplace);
+        menuEdit->addSeparator();
+        menuEdit->addAction(actionUndo);
+        menuEdit->addAction(actionRedo);
         menuEdit->addSeparator();
         menuEdit->addAction(actionSelect_All);
         menuView->addAction(actionZoom_In);
@@ -279,6 +294,8 @@ public:
         actionFont->setText(QCoreApplication::translate("MainWindow", "Font", nullptr));
         actionHelp->setText(QCoreApplication::translate("MainWindow", "Help", nullptr));
         actionAbout->setText(QCoreApplication::translate("MainWindow", "About", nullptr));
+        actionUndo->setText(QCoreApplication::translate("MainWindow", "Undo", nullptr));
+        actionRedo->setText(QCoreApplication::translate("MainWindow", "Redo", nullptr));
         menuFile->setTitle(QCoreApplication::translate("MainWindow", "File", nullptr));
         menuEdit->setTitle(QCoreApplication::translate("MainWindow", "Edit", nullptr));
         menuView->setTitle(QCoreApplication::translate("MainWindow", "View", nullptr));

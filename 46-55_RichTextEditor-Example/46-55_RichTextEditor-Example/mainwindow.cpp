@@ -52,18 +52,29 @@ void MainWindow::on_actionExit_triggered()
 
 void MainWindow::on_actionCopy_triggered()
 {
-
+    ui->textEdit->copy();
 }
 
 void MainWindow::on_actionCut_triggered()
 {
-
+    ui->textEdit->cut();
 }
 
 void MainWindow::on_actionPaste_triggered()
 {
-
+    ui->textEdit->paste();
 }
+
+void MainWindow::on_actionUndo_triggered()
+{
+    ui->textEdit->undo();
+}
+
+void MainWindow::on_actionRedo_triggered()
+{
+    ui->textEdit->redo();
+}
+
 
 void MainWindow::on_actionFind_triggered()
 {
@@ -77,17 +88,17 @@ void MainWindow::on_actionReplace_triggered()
 
 void MainWindow::on_actionSelect_All_triggered()
 {
-
+    ui->textEdit->selectAll();
 }
 
 void MainWindow::on_actionZoom_In_triggered()
 {
-
+    ui->textEdit->zoomIn(3);
 }
 
 void MainWindow::on_actionZoom_out_triggered()
 {
-
+    ui->textEdit->zoomOut(3);
 }
 
 void MainWindow::on_actionBold_triggered()
@@ -227,3 +238,4 @@ void MainWindow::closeEvent(QCloseEvent *event)
 
     event->accept();
 }
+
