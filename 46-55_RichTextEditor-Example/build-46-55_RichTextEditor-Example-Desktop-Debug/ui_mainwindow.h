@@ -62,7 +62,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
-        MainWindow->resize(512, 341);
+        MainWindow->resize(643, 341);
         actionNew = new QAction(MainWindow);
         actionNew->setObjectName(QString::fromUtf8("actionNew"));
         QIcon icon;
@@ -176,7 +176,7 @@ public:
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 512, 22));
+        menubar->setGeometry(QRect(0, 0, 643, 22));
         menuFile = new QMenu(menubar);
         menuFile->setObjectName(QString::fromUtf8("menuFile"));
         menuEdit = new QMenu(menubar);
@@ -240,6 +240,8 @@ public:
         toolBar->addAction(actionCut);
         toolBar->addAction(actionPaste);
         toolBar->addSeparator();
+        toolBar->addAction(actionFind);
+        toolBar->addAction(actionReplace);
         toolBar_2->addAction(actionBold);
         toolBar_2->addAction(actionItalic);
         toolBar_2->addAction(actionUnderline);
