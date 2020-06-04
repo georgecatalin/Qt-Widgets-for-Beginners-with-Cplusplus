@@ -220,7 +220,13 @@ void MainWindow::on_actionColor_triggered()
 
 void MainWindow::on_actionFont_triggered()
 {
+    bool ok;
+    QFont currentFont=ui->textEdit->currentFont();
+    QFont qFont=QFontDialog::getFont(&ok,currentFont,this,"Select a font:");
 
+    if(ok==true) ui->textEdit->setCurrentFont(qFont);
+
+    m_changed=true;
 }
 
 void MainWindow::on_actionHelp_triggered()
