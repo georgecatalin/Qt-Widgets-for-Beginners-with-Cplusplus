@@ -8,6 +8,7 @@
 #include <QMessageBox>
 #include <QTextStream>
 #include "finddialog.h"
+#include "replacedialog.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }

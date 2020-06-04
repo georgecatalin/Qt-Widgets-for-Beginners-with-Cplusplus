@@ -108,7 +108,39 @@ void MainWindow::on_actionFind_triggered()
 
 void MainWindow::on_actionReplace_triggered()
 {
+        ReplaceDialog* dialog=new ReplaceDialog(this);
+        if(!dialog->exec()) return;
 
+        if(dialog->all()==true)
+        {
+            //Replace All
+            QString text=ui->textEdit->toHtml();
+            text=text.replace(dialog->text(),dialog->replaceText());
+            ui->textEdit->setHtml(text);
+        }
+        else
+        {
+            //Replace a single value
+            bool search=ui->textEdit->find(dialog->text());
+
+            /* *** QTextCursor Class
+             * ***** The QTextCursor class offers an API to access and modify QTextDocuments.
+             *
+             * QTextCursor QTextEdit::textCursor() const
+             * ***** Returns a copy of the QTextCursor that represents the currently visible cursor.
+             * Note that changes on the returned cursor do not affect QTextEdit's cursor; use
+             * setTextCursor() to update the visible cursor.
+             *
+             * void QTextCursor::insertHtml(const QString &html)
+             * ***** Inserts the text html at the current position().
+             * The text is interpreted as HTML.
+             * *** */
+
+            QTextCursor qTextCursor=ui->textEdit->textCursor();
+            qTextCursor.insertHtml(dialog->replaceText());
+
+            if(search==false) QMessageBox::information(this,"Not found","Could not find and replace "+dialog->text());
+        }
 }
 
 void MainWindow::on_actionSelect_All_triggered()

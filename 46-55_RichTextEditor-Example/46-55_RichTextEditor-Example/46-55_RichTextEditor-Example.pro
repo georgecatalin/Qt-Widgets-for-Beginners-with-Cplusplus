@@ -18,15 +18,18 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     finddialog.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    replacedialog.cpp
 
 HEADERS += \
     finddialog.h \
-    mainwindow.h
+    mainwindow.h \
+    replacedialog.h
 
 FORMS += \
     finddialog.ui \
-    mainwindow.ui
+    mainwindow.ui \
+    replacedialog.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
