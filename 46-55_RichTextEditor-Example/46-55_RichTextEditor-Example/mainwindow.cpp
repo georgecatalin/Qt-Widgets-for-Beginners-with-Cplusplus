@@ -160,22 +160,39 @@ void MainWindow::on_actionZoom_out_triggered()
 
 void MainWindow::on_actionBold_triggered()
 {
+   /* *** QFont Class
+    * The QFont class specifies a query for a font used for drawing text.
+    * *** */
 
+    QFont qFont=ui->textEdit->currentFont();
+
+    /* *** bool QFont::bold() const
+     * Returns true if weight() is a value greater than QFont::Medium; otherwise returns false.
+     * *** */
+
+    qFont.bold() ? qFont.setBold(false) : qFont.setBold(true);
+    ui->textEdit->setCurrentFont(qFont);
 }
 
 void MainWindow::on_actionItalic_triggered()
 {
-
+    QFont qFont=ui->textEdit->currentFont();
+    qFont.italic() ? qFont.setItalic(false) : qFont.setItalic(true);
+    ui->textEdit->setCurrentFont(qFont);
 }
 
 void MainWindow::on_actionUnderline_triggered()
 {
-
+    QFont qFont=ui->textEdit->currentFont();
+    qFont.underline() ? qFont.setUnderline(false) : qFont.setUnderline(true);
+    ui->textEdit->setCurrentFont(qFont);
 }
 
 void MainWindow::on_actionStrikethrough_triggered()
 {
-
+    QFont qFont=ui->textEdit->currentFont();
+    qFont.strikeOut() ? qFont.setStrikeOut(false) : qFont.setStrikeOut(true);
+    ui->textEdit->setCurrentFont(qFont);
 }
 
 void MainWindow::on_actionColor_triggered()
