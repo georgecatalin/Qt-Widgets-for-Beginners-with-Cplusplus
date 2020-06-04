@@ -9,6 +9,9 @@
 #include <QTextStream>
 #include <QColorDialog>
 #include <QFontDialog>
+#include <QApplication>
+#include <QDesktopServices>
+#include <QUrl>
 #include "finddialog.h"
 #include "replacedialog.h"
 

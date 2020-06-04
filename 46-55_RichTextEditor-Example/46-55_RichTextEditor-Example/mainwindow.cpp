@@ -1,10 +1,13 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "aboutdialog.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
+
+    /* *** This always goes first *** */
     ui->setupUi(this);
 
     this->setCentralWidget(ui->textEdit);
@@ -231,12 +234,13 @@ void MainWindow::on_actionFont_triggered()
 
 void MainWindow::on_actionHelp_triggered()
 {
-
+    QDesktopServices::openUrl(QUrl("http://www.google.com"));
 }
 
 void MainWindow::on_actionAbout_triggered()
 {
-
+    AboutDialog* dialog=new AboutDialog(this);
+    dialog->exec();
 }
 
 void MainWindow::on_textEdit_textChanged()
