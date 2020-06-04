@@ -78,7 +78,32 @@ void MainWindow::on_actionRedo_triggered()
 
 void MainWindow::on_actionFind_triggered()
 {
+    FindDialog* dialog=new FindDialog(this);
+    if(!dialog->exec()) return;
 
+    /* *** enum QTextDocument::FindFlag
+     * ***** flags QTextDocument::FindFlags
+     * This enum describes the options available to QTextDocument's find function. The options can be OR-ed together from the following
+     * list:
+     *
+     * QTextDocument::FindBackward 0x00001 Search backwards instead of forwards.
+     * QTextDocument::FindCaseSensitively 0x00002 By default find works case insensitive. Specifying this option
+     * changes the behaviour to a case sensitive find operation.
+     * QTextDocument::FindWholeWords 0x00004 Makes find match only complete words.
+     * *** */
+    QTextDocument::FindFlags flags;
+
+    /* *** can not use the variables m_caseSensitive etc cause they are private. Use the getters instead which are public *** */
+    if(dialog->caseSensitive()) flags= flags | QTextDocument::FindFlag::FindCaseSensitively; // QTextDocument::FindFlag is the ENUM, while QTextDocument::FindFlags is the TYPE OF THE ASSOCIATED VARIABLE
+    if(dialog->wholeWords()) flags=flags | QTextDocument::FindFlag::FindWholeWords;
+    if(dialog->backwards()) flags=flags | QTextDocument::FindFlag::FindBackward;
+
+    bool search=ui->textEdit->find(dialog->text(),flags);
+
+    if(search==false)
+    {
+        QMessageBox::information(this,"Not found","Could not find: "+dialog->text());
+    }
 }
 
 void MainWindow::on_actionReplace_triggered()

@@ -7,6 +7,7 @@
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QTextStream>
+#include "finddialog.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
