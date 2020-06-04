@@ -48,6 +48,7 @@ public:
     QAction *actionAbout;
     QAction *actionUndo;
     QAction *actionRedo;
+    QAction *actionCustom_Text;
     QWidget *centralwidget;
     QTextEdit *textEdit;
     QMenuBar *menubar;
@@ -56,6 +57,7 @@ public:
     QMenu *menuView;
     QMenu *menuText;
     QMenu *menuAbout;
+    QMenu *menuInsert;
     QStatusBar *statusbar;
     QToolBar *toolBar;
     QToolBar *toolBar_2;
@@ -180,6 +182,8 @@ public:
         QIcon icon22;
         icon22.addFile(QString::fromUtf8(":/files/images/arrow_redo.png"), QSize(), QIcon::Normal, QIcon::Off);
         actionRedo->setIcon(icon22);
+        actionCustom_Text = new QAction(MainWindow);
+        actionCustom_Text->setObjectName(QString::fromUtf8("actionCustom_Text"));
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         textEdit = new QTextEdit(centralwidget);
@@ -199,6 +203,8 @@ public:
         menuText->setObjectName(QString::fromUtf8("menuText"));
         menuAbout = new QMenu(menubar);
         menuAbout->setObjectName(QString::fromUtf8("menuAbout"));
+        menuInsert = new QMenu(menubar);
+        menuInsert->setObjectName(QString::fromUtf8("menuInsert"));
         MainWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
@@ -212,6 +218,7 @@ public:
 
         menubar->addAction(menuFile->menuAction());
         menubar->addAction(menuEdit->menuAction());
+        menubar->addAction(menuInsert->menuAction());
         menubar->addAction(menuView->menuAction());
         menubar->addAction(menuText->menuAction());
         menubar->addAction(menuAbout->menuAction());
@@ -246,6 +253,7 @@ public:
         menuText->addAction(actionFont);
         menuAbout->addAction(actionHelp);
         menuAbout->addAction(actionAbout);
+        menuInsert->addAction(actionCustom_Text);
         toolBar->addAction(actionNew);
         toolBar->addAction(actionOpen);
         toolBar->addAction(actionSave);
@@ -296,11 +304,13 @@ public:
         actionAbout->setText(QCoreApplication::translate("MainWindow", "About", nullptr));
         actionUndo->setText(QCoreApplication::translate("MainWindow", "Undo", nullptr));
         actionRedo->setText(QCoreApplication::translate("MainWindow", "Redo", nullptr));
+        actionCustom_Text->setText(QCoreApplication::translate("MainWindow", "Custom Text", nullptr));
         menuFile->setTitle(QCoreApplication::translate("MainWindow", "File", nullptr));
         menuEdit->setTitle(QCoreApplication::translate("MainWindow", "Edit", nullptr));
         menuView->setTitle(QCoreApplication::translate("MainWindow", "View", nullptr));
         menuText->setTitle(QCoreApplication::translate("MainWindow", "Text", nullptr));
         menuAbout->setTitle(QCoreApplication::translate("MainWindow", "About", nullptr));
+        menuInsert->setTitle(QCoreApplication::translate("MainWindow", "Insert", nullptr));
         toolBar->setWindowTitle(QCoreApplication::translate("MainWindow", "toolBar", nullptr));
         toolBar_2->setWindowTitle(QCoreApplication::translate("MainWindow", "toolBar_2", nullptr));
     } // retranslateUi

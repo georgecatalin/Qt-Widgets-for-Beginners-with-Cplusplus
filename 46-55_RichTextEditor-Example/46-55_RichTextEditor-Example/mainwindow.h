@@ -76,6 +76,8 @@ private slots:
 
     void on_actionRedo_triggered();
 
+    void on_actionCustom_Text_triggered();
+
 private:
     Ui::MainWindow *ui;
 

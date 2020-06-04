@@ -90,8 +90,15 @@
     <addaction name="actionHelp"/>
     <addaction name="actionAbout"/>
    </widget>
+   <widget class="QMenu" name="menuInsert">
+    <property name="title">
+     <string>Insert</string>
+    </property>
+    <addaction name="actionCustom_Text"/>
+   </widget>
    <addaction name="menuFile"/>
    <addaction name="menuEdit"/>
+   <addaction name="menuInsert"/>
    <addaction name="menuView"/>
    <addaction name="menuText"/>
    <addaction name="menuAbout"/>
@@ -342,6 +349,11 @@
    </property>
    <property name="text">
     <string>Redo</string>
+   </property>
+  </action>
+  <action name="actionCustom_Text">
+   <property name="text">
+    <string>Custom Text</string>
    </property>
   </action>
  </widget>

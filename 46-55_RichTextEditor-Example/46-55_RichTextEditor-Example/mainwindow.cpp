@@ -341,3 +341,8 @@ void MainWindow::closeEvent(QCloseEvent *event)
     event->accept();
 }
 
+
+void MainWindow::on_actionCustom_Text_triggered()
+{
+    ui->textEdit->insertHtml("<h1>Hello</h1>world");
+}
