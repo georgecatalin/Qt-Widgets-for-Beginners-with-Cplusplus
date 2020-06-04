@@ -117,6 +117,8 @@ void MainWindow::on_actionReplace_triggered()
             QString text=ui->textEdit->toHtml();
             text=text.replace(dialog->text(),dialog->replaceText());
             ui->textEdit->setHtml(text);
+
+            m_changed=true;
         }
         else
         {
@@ -140,6 +142,8 @@ void MainWindow::on_actionReplace_triggered()
             qTextCursor.insertHtml(dialog->replaceText());
 
             if(search==false) QMessageBox::information(this,"Not found","Could not find and replace "+dialog->text());
+
+            m_changed=true;
         }
 }
 
@@ -172,6 +176,8 @@ void MainWindow::on_actionBold_triggered()
 
     qFont.bold() ? qFont.setBold(false) : qFont.setBold(true);
     ui->textEdit->setCurrentFont(qFont);
+
+    m_changed=true;
 }
 
 void MainWindow::on_actionItalic_triggered()
@@ -179,6 +185,8 @@ void MainWindow::on_actionItalic_triggered()
     QFont qFont=ui->textEdit->currentFont();
     qFont.italic() ? qFont.setItalic(false) : qFont.setItalic(true);
     ui->textEdit->setCurrentFont(qFont);
+
+    m_changed=true; //set the status of the file to  'dirty' = needs to be saved because it has unsaved changes
 }
 
 void MainWindow::on_actionUnderline_triggered()
@@ -186,6 +194,8 @@ void MainWindow::on_actionUnderline_triggered()
     QFont qFont=ui->textEdit->currentFont();
     qFont.underline() ? qFont.setUnderline(false) : qFont.setUnderline(true);
     ui->textEdit->setCurrentFont(qFont);
+
+    m_changed=true;
 }
 
 void MainWindow::on_actionStrikethrough_triggered()
@@ -193,11 +203,19 @@ void MainWindow::on_actionStrikethrough_triggered()
     QFont qFont=ui->textEdit->currentFont();
     qFont.strikeOut() ? qFont.setStrikeOut(false) : qFont.setStrikeOut(true);
     ui->textEdit->setCurrentFont(qFont);
+
+    m_changed=true;
 }
 
 void MainWindow::on_actionColor_triggered()
 {
+    QColor currentColor=ui->textEdit->currentCharFormat().foreground().color();
+    QColor myColor=QColorDialog::getColor(currentColor,this,"Select a new color: ");
 
+    ui->textEdit->setTextColor(myColor);
+
+    /* *** set the status of the file to 'dirty' = has unsaved changes *** */
+    m_changed=true;
 }
 
 void MainWindow::on_actionFont_triggered()
